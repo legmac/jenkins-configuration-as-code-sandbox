@@ -7,7 +7,7 @@ public class JenkinsSandboxUtils {
   public static String getHostIp(steps) {
     steps.sh(
       returnStdout: true,
-      script: '''ip ro | grep def| cut -d' ' -f3 '''
+      script: '''echo 10.244.3.91'''
     )
     .trim()
   }
