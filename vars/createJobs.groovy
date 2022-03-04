@@ -7,10 +7,14 @@ import static se.bjurr.jenkinssandbox.JenkinsSandboxUtils.*
 def call() {
   node {
     //Need to replace localhost with hostIp when working locally.
-    def hostIp = getHostIp(this)
+    //def hostIp = getHostIp(this)
 
-    def jenkinsUrl = env.jenkinsUrl.replace('localhost',hostIp.trim())
-    def gitlabUrl = env.gitlabUrl.replace('localhost',hostIp.trim())
+    //def jenkinsUrl = env.jenkinsUrl.replace('localhost',hostIp.trim())
+    //def gitlabUrl = env.gitlabUrl.replace('localhost',hostIp.trim())
+    def hostIp = '10.244.3.91'
+    def jenkinsUrl = 'http://j.test.deploy.work'
+    def gitlabUrl = 'https://github.com/legmac/jenkins-configuration-as-code-sandbox'
+    def ok = env.ok
 
     def restClient = new RestClient(this, gitlabUrl)
 
