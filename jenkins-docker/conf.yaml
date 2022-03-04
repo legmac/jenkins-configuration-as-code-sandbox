@@ -1,0 +1,48 @@
+jenkins:
+  systemMessage: "Welcome to Jenkins "
+
+jobs:
+  - script: >
+      pipelineJob('configuration-as-code') {}
+
+unclassified:
+  location:
+    url: "http://localhost:8080/"
+  globalLibraries:
+    libraries:
+    - name: "Sandbox"
+    - defaultVersion: "master"
+      implicit: true
+      name: "sandbox"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              id: "sandbox-repo"
+              remote: "https://github.com/tomasbjerre/jenkins-configuration-as-code-sandbox.git"
+              traits:
+              - cloneOptionTrait:
+                  extension:
+                    depth: 1
+                    noTags: true
+                    shallow: true
+
+jobs:
+  - script: >
+      pipelineJob('Create Jobs Pipeline') {
+        quietPeriod(0)
+        properties {
+          disableConcurrentBuilds()
+        }
+        logRotator {
+          numToKeep(10)
+        }
+        triggers {
+          cron("H/15 * * * *")
+        }
+        definition {
+          cps {
+            script('createJobs()')
+          }
+        }
+      }
