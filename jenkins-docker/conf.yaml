@@ -19,7 +19,7 @@ unclassified:
           scm:
             git:
               id: "sandbox-repo"
-              remote: "https://github.com/tomasbjerre/jenkins-configuration-as-code-sandbox.git"
+              remote: "https://github.com/legmac/jenkins-configuration-as-code-sandbox.git"
               traits:
               - cloneOptionTrait:
                   extension:
